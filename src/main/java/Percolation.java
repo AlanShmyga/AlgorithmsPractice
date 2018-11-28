@@ -2,36 +2,65 @@ public class Percolation {
 
     private boolean[][] grid;
 
-    public Percolation(int n) { // create n-by-n grid, with all sites blocked
+    /**
+     * Creates n-by-n grid, with all sites blocked
+     * @param n the size of the grid
+     */
+    public Percolation(int n) {
         if(n < 1) {
             throw new IllegalArgumentException("n must be grater than 0");
         }
         initGrid(n);
     }
 
-    public void open(int row, int col) { // open site (row, col) if it is not open already
+    /**
+     * Opens site (row, col) if it is not open already
+     * @param row row of cell to open
+     * @param col column of cell to open
+     */
+    public void open(int row, int col) {
         validateInputs(row, col);
     }
 
-    public boolean isOpen(int row, int col) { // is site (row, col) open?
+    /**
+     * Checks if target cell is open
+     *
+     * @param row row of checking cell
+     * @param col column of checking cell
+     * @return is site (row, col) open?
+     */
+    public boolean isOpen(int row, int col) {
         validateInputs(row, col);
         return false;
     }
 
-    public boolean isFull(int row, int col) { // is site (row, col) full?
+    /**
+     * Checks if target cell is full
+     *
+     * @param row row of checking cell
+     * @param col column of checking cell
+     * @return is site (row, col) full?
+     */
+    public boolean isFull(int row, int col) {
         validateInputs(row, col);
         return false;
     }
 
-    public int numberOfOpenSites() { // number of open sites
+    /**
+     * @return number of open sites
+     */
+    public int numberOfOpenSites() {
         return 0;
     }
 
-    public boolean percolates() { // does the system percolate?
+    /**
+     * @return does the system percolate?
+     */
+    public boolean percolates() {
         return false;
     }
 
-    public static void main(String[] args) { // test client (optional)
+    public static void main(String[] args) {
         new Percolation(5);
     }
 
