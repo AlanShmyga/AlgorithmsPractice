@@ -1,6 +1,6 @@
 public class Percolation {
 
-    private boolean[][] grid;
+    private int[][] grid;
 
     /**
      * Creates n-by-n grid, with all sites blocked
@@ -20,6 +20,7 @@ public class Percolation {
      */
     public void open(int row, int col) {
         validateInputs(row, col);
+        this.grid[row-1][col-1] = col;
     }
 
     /**
@@ -31,7 +32,7 @@ public class Percolation {
      */
     public boolean isOpen(int row, int col) {
         validateInputs(row, col);
-        return false;
+        return this.grid[row-1][col-1] > 0;
     }
 
     /**
@@ -50,7 +51,15 @@ public class Percolation {
      * @return number of open sites
      */
     public int numberOfOpenSites() {
-        return 0;
+        int result = 0;
+        for(int[] nestedArray : this.grid) {
+            for(int cell : nestedArray) {
+                if(cell > 0) {
+                    result++;
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -65,7 +74,10 @@ public class Percolation {
     }
 
     private void initGrid(int n) {
-        this.grid = new boolean[n][n];
+        this.grid = new int[n][n];
+        for(int i = 0; i < n; i++) {
+            this.grid[i][i] = 0;
+        }
         printGrid(n);
     }
 
@@ -78,8 +90,8 @@ public class Percolation {
     }
 
     private void printGrid(int n) {
-        for(boolean[] nestedArray : this.grid) {
-            for(boolean cell : nestedArray) {
+        for(int[] nestedArray : this.grid) {
+            for(int cell : nestedArray) {
                 System.out.print(cell);
             }
             System.out.println();
